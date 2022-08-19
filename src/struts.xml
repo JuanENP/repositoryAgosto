@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!-- hibernate-default : es cuando ocupamos @sessionTarget y @TransactionTarget 
+	en el Dao struts-default: es cuando ocupamos las clases SessionFactory y 
+	Session en el Dao -->
+<!-- Ojo, siempre que crees una nueva clase debes poner su action aquí abajo 
+	dentro del pacakge -->
+<struts>
+	<package name="default" extends="hibernate-default">
+		<!-- Con action le decimos que entre a la clase ActionAlta y si me arroja 
+			succes me haga el result -->
+		<action name="alta" class="org.action.register.ActionRegister" method="addRegister">
+			<result name="success" type="redirect">consulta</result>
+		</action>
+
+	<!-- redirect: actualiza la página con los nuevos registros -->
+		<action name="baja" class="org.action.register.ActionRegister" method="deleteRegister">
+			<result name="success" type="redirect">consulta</result>
+		</action>
+
+		<action name="consulta" class="org.action.register.ActionRegister" method="listRegister">
+			<result name="success">/formregister.jsp</result>
+		</action>
+
+		<action name="editar" class="org.action.register.ActionRegister" method="updateRegister">
+			<result name="success">/formregister.jsp</result>
+		</action>
+	</package>
+</struts>
